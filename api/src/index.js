@@ -33,6 +33,7 @@ app.use(cookieParser());
 app.use("/user", require("./controllers/user"));
 app.use("/shop", require("./controllers/shop"));
 app.use("/feedback", require("./controllers/feedback"));
+app.use("/fintecture", require("./controllers/fintecture"));
 
 const now = new Date().toISOString();
 
