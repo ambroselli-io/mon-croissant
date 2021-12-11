@@ -19,9 +19,6 @@ if (process.env.NODE_ENV === "development") {
   require("../scripts/migrations");
 }
 
-console.log(WHITE_LIST_DOMAINS.split(","));
-console.log({ WHITE_LIST_DOMAINS: WHITE_LIST_DOMAINS.split(",") });
-
 app.use(cors({ credentials: true, origin: WHITE_LIST_DOMAINS.split(",") }));
 
 app.use(express.static(__dirname + "/../public"));
@@ -34,11 +31,8 @@ app.use(cookieParser());
 
 // Routes
 app.use("/user", require("./controllers/user"));
-app.use("/answer", require("./controllers/answer"));
-app.use("/quizz-builder", require("./controllers/quizz-builder"));
-app.use("/quizz", require("./controllers/quizz"));
+app.use("/shop", require("./controllers/shop"));
 app.use("/feedback", require("./controllers/feedback"));
-app.use("/result", require("./controllers/result"));
 
 const now = new Date().toISOString();
 
