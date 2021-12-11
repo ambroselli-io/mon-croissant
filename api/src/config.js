@@ -7,6 +7,8 @@ const WHITE_LIST_DOMAINS = process.env.WHITE_LIST_DOMAINS;
 const TIPIMAIL_API_USER = process.env.TIPIMAIL_API_USER;
 const TIPIMAIL_API_KEY = process.env.TIPIMAIL_API_KEY;
 const EMAIL_1 = process.env.EMAIL_1;
+const FINTECTURE_APP_ID = process.env.FINTECTURE_APP_ID;
+const FINTECTURE_APP_SECRET = process.env.FINTECTURE_APP_SECRET;
 
 module.exports = {
   MONGO_URL,
@@ -18,4 +20,6 @@ module.exports = {
   TIPIMAIL_API_USER,
   TIPIMAIL_API_KEY,
   EMAIL_1,
+  FINTECTURE_APP_ID,
+  FINTECTURE_APP_SECRET,
 };
