@@ -1,15 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const config = require("../config");
 const UserObject = require("../models/user");
 const { catchErrors } = require("../utils/error");
 const FintectureAPI = require("../utils/fintecture");
+const { FINTECTURE_APP_ID, FINTECTURE_APP_SECRET, FINTECTURE_ENV, FINTECTURE_PRIVATE_KEY, ENVIRONMENT } = require("../config");
+const { capture } = require("../utils/sentry");
 
 router.get(
   "/test",
   // passport.authenticate("user", { session: false }),
   catchErrors(async (req, res) => {
+    capture("TEST", {
+      extra: {
+        app_id: FINTECTURE_APP_ID,
+        app_secret: FINTECTURE_APP_SECRET,
+        env: FINTECTURE_ENV,
+        private_key: FINTECTURE_PRIVATE_KEY,
+      },
+    });
     let tokens = await FintectureAPI.getAccessToken();
     console.log({ tokens });
     let connect = await FintectureAPI.getPisConnect(tokens.access_token, {

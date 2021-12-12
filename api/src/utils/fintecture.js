@@ -5,8 +5,8 @@ const { capture } = require("./sentry");
 console.log({
   app_id: FINTECTURE_APP_ID,
   app_secret: FINTECTURE_APP_SECRET,
-  private_key: FINTECTURE_PRIVATE_KEY,
   env: FINTECTURE_ENV,
+  private_key: FINTECTURE_PRIVATE_KEY,
 });
 
 let FintectureAPI = new FintectureClient({
