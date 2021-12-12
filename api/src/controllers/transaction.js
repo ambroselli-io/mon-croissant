@@ -11,6 +11,7 @@ router.get(
   // passport.authenticate("user", { session: false }),
   catchErrors(async (req, res) => {
     let tokens = await FintectureAPI.getAccessToken();
+    console.log({ tokens });
     let connect = await FintectureAPI.getPisConnect(tokens.access_token, {
       amount: "125",
       currency: "EUR",
@@ -22,6 +23,7 @@ router.get(
       country: "fr",
       redirect_uri: "https://app-12d7de78-e9a9-40b4-abb9-22a45d8ae76d.cleverapps.io/transaction/redirect",
     });
+    console.log({ connect });
 
     res.status(200).send({ ok: true, connect });
   })
