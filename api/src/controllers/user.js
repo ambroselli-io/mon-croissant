@@ -128,9 +128,17 @@ router.put(
   })
 );
 
-router.post(
+router.get(
   "/me",
   passport.authenticate("user", { session: false }),
+  catchErrors(async (req, res) => {
+    res.status(200).send({ ok: true, user: req.user.me() });
+  })
+);
+
+router.post(
+  "/donate",
+  // passport.authenticate("user", { session: false }),
   catchErrors(async (req, res) => {
     res.status(200).send({ ok: true, user: req.user.me() });
   })

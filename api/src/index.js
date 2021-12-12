@@ -31,9 +31,10 @@ app.use(cookieParser());
 
 // Routes
 app.use("/user", require("./controllers/user"));
+app.use("/transaction", require("./controllers/transaction"));
 app.use("/shop", require("./controllers/shop"));
 app.use("/feedback", require("./controllers/feedback"));
-app.use("/fintecture", require("./controllers/fintecture"));
+app.use("/fintecture", require("./hooks/fintecture"));
 
 const now = new Date().toISOString();
 
