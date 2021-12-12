@@ -11,6 +11,7 @@ const FINTECTURE_APP_ID = process.env.FINTECTURE_APP_ID;
 const FINTECTURE_APP_SECRET = process.env.FINTECTURE_APP_SECRET;
 const FINTECTURE_API_GATEWAY = process.env.FINTECTURE_API_GATEWAY;
 const FINTECTURE_PRIVATE_KEY = process.env.FINTECTURE_PRIVATE_KEY;
+const FINTECTURE_ENV = ENVIRONMENT === "production" ? "production" : "sandbox";
 
 module.exports = {
   MONGO_URL,
@@ -26,4 +27,5 @@ module.exports = {
   FINTECTURE_APP_SECRET,
   FINTECTURE_API_GATEWAY,
   FINTECTURE_PRIVATE_KEY,
+  FINTECTURE_ENV,
 };
