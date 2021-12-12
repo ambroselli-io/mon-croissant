@@ -6,37 +6,24 @@ const UserObject = require("../models/user");
 const { catchErrors } = require("../utils/error");
 const FintectureAPI = require("../utils/fintecture");
 
-let connectConfig = {
-  amount: "125",
-  currency: "EUR",
-  communication: "Thanks mom!",
-  customer_full_name: "Bob Smith",
-  customer_email: "bob.smith@gmail.com",
-  customer_ip: "127.0.0.1",
-  state: "somestate",
-  country: "fr",
-};
-
-(async () => {
-  let tokens = await FintectureAPI.getAccessToken();
-  console.log({ tokens });
-  let connect = await FintectureAPI.getPisConnect(tokens.access_token, connectConfig);
-  console.log({ connect });
-  // window.href.location = connect.url;
-  // and at any time (ex: to validate a payment on callback)
-  console.log(tokens.access_token, connect.session_id);
-  // let payment = await FintectureAPI.getPayments(
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfZXh0X2lkIjoiY2M1N2QyMTctZmJiNi00Y2ZmLWEwOTMtMjkyNDdlM2M3Y2JhIiwidGltZXN0YW1wIjoiMjAyMS0xMi0xMlQxNDo1NDoyOS4xOTVaIiwiaWF0IjoxNjM5MzIwODY5LCJleHAiOjE2MzkzMjQ0Njl9.s7TCiitA8W3Ak84Yjie7E-cLGpYgI5y1J6rk17nd6yY",
-  //   "330e8f7846d64c128cceea9dca7a5092"
-  // );
-  // console.log("PAYMENT STATUS:", payment.meta.status);
-})();
-
-router.post(
-  "/donate",
+router.get(
+  "/test",
   // passport.authenticate("user", { session: false }),
   catchErrors(async (req, res) => {
-    res.status(200).send({ ok: true, user: req.user.me() });
+    let tokens = await FintectureAPI.getAccessToken();
+    let connect = await FintectureAPI.getPisConnect(tokens.access_token, {
+      amount: "125",
+      currency: "EUR",
+      communication: "Thanks mom!",
+      customer_full_name: "Bob Smith",
+      customer_email: "bob.smith@gmail.com",
+      customer_ip: "127.0.0.1",
+      state: "somestate",
+      country: "fr",
+      redirect_uri: "https://app-12d7de78-e9a9-40b4-abb9-22a45d8ae76d.cleverapps.io/transaction/redirect",
+    });
+
+    res.status(200).send({ ok: true, connect });
   })
 );
 
