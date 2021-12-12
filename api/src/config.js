@@ -10,7 +10,8 @@ const EMAIL_1 = process.env.EMAIL_1;
 const FINTECTURE_APP_ID = process.env.FINTECTURE_APP_ID;
 const FINTECTURE_APP_SECRET = process.env.FINTECTURE_APP_SECRET;
 const FINTECTURE_PRIVATE_KEY = process.env.FINTECTURE_PRIVATE_KEY;
-const FINTECTURE_ENV = ENVIRONMENT === "production" ? "production" : "sandbox";
+// const FINTECTURE_ENV = ENVIRONMENT === "production" ? "production" : "sandbox";
+const FINTECTURE_ENV = "sandbox";
 
 module.exports = {
   MONGO_URL,
