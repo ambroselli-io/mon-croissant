@@ -6,6 +6,7 @@ const { catchErrors } = require("../utils/error");
 const { capture } = require("../utils/sentry");
 
 const { ENVIRONMENT } = require("../config");
+const FintectureAPI = require("../utils/fintecture");
 
 router.post(
   "/",
@@ -16,12 +17,16 @@ router.post(
   // }),
   catchErrors(async (req, res) => {
     res.status(200).send();
+    let accessToken = await FintectureAPI.getAccessToken();
+    let payment = await FintectureAPI.getPayments(accessToken["access_token"], req.query.session_id);
+    let verification = payment.meta.status === req.query.status;
+
     let { body, headers } = req;
     await LogObject.create({
       name: "fintecture",
       environment: ENVIRONMENT,
-      content: JSON.stringify({ headers, body }),
-      route: "/shopify/gift-cards",
+      content: JSON.stringify({ headers, body, verification, payment }),
+      route: "/fintecture",
     });
   })
 );
