@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "development") {
   require("../scripts/migrations");
 }
 
-app.use(cors({ credentials: true, origin: WHITE_LIST_DOMAINS.split(",") }));
+// app.use(cors({ credentials: true, origin: WHITE_LIST_DOMAINS.split(",") }));
 
 app.use(express.static(__dirname + "/../public"));
 // Pre middleware
