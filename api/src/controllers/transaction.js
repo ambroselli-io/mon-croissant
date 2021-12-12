@@ -17,7 +17,7 @@ router.get(
       communication: "Thanks mom!",
       customer_full_name: "Bob Smith",
       customer_email: "bob.smith@gmail.com",
-      customer_ip: "127.0.0.1",
+      customer_ip: req.ipInfo,
       state: "somestate",
       country: "fr",
       redirect_uri: "https://app-12d7de78-e9a9-40b4-abb9-22a45d8ae76d.cleverapps.io/transaction/redirect",
