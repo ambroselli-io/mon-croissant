@@ -3,7 +3,16 @@ const MODELNAME = "User";
 
 const Schema = new mongoose.Schema(
   {
-    pseudo: { type: String, trim: true, unique: true, sparse: true },
+    firstName: String,
+    lastName: String,
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      unique: true,
+      required: "Email address is required",
+      match: [/^.+@(?:[\w-]+\.)+\w+$/, "Please fill a valid email address"],
+    },
     password: { type: String },
     lastLoginAt: { type: Date },
   },
